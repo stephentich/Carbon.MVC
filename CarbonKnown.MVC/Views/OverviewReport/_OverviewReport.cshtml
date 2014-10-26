@@ -193,7 +193,7 @@
                 }
                 <tr>
                     <td class="overview-lineitem-heading">Emissions per employee (t/Full Time Employee)</td>
-                    <td class="overview-lineitem-value">@emissionsPerEmpolyee.ToString("P")</td>
+                    <td class="overview-lineitem-value">@Html.FormatNumber(emissionsPerEmpolyee)</td>
                     <td class="overview-lineitem-space"></td>
                 </tr>
                 @{
@@ -201,7 +201,7 @@
                 }
                 <tr>
                     <td class="overview-lineitem-heading">Emissions per square-metre office space (t/m2)</td>
-                    <td class="overview-lineitem-value">@emissionsPerSqM.ToString("P")</td>
+                    <td class="overview-lineitem-value">@Html.FormatNumber(emissionsPerSqM)</td>
                     <td class="overview-lineitem-space"></td>
                 </tr>
             </tbody>
