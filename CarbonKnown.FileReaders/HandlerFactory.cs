@@ -1,17 +1,7 @@
-﻿using CarbonKnown.FileReaders.AvisCourier;
-using CarbonKnown.FileReaders.Constants;
-using CarbonKnown.FileReaders.Courier;
-//using CarbonKnown.FileReaders.EzShuttle;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CarbonKnown.FileReaders.FileHandler;
-using CarbonKnown.FileReaders.Fleet;
-using CarbonKnown.FileReaders.Generic;
-using CarbonKnown.FileReaders.LibertyAirTickets;
-using CarbonKnown.FileReaders.LibertyAvis;
-using CarbonKnown.FileReaders.LibertyEuroCar;
-using CarbonKnown.FileReaders.MondiPaper;
-using CarbonKnown.FileReaders.NampakFlight;
-using CarbonKnown.FileReaders.Rennies;
-using CarbonKnown.FileReaders.TWF;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 
@@ -29,18 +19,15 @@ namespace CarbonKnown.FileReaders
         public static void RegisterHandlers(IUnityContainer container)
         {
             container.RegisterType<IHandlerFactory, HandlerFactory>();
-            RegisterHandler<AvisCourierHandler>(container, HandlerName.AvisCourierHandler);
-            RegisterHandler<CourierHandler>(container, HandlerName.CourierHandler);
-            RegisterHandler<FleetHandler>(container, HandlerName.FleetHandler);
-            RegisterHandler<MondiPaperHandler>(container, HandlerName.MondiPaperHandler);
-            RegisterHandler<RenniesHandler>(container, HandlerName.RenniesHandler);
-            RegisterHandler<TWFHandler>(container, HandlerName.TWFHandler);
-            RegisterHandler<GenericHandler>(container, HandlerName.GenericHandler);
-            RegisterHandler<LibertyAirTicketsHandler>(container, HandlerName.LibertyAirTicketsHandler);
-            RegisterHandler<LibertyAvisHandler>(container, HandlerName.LibertyAvisHandler);
-            RegisterHandler<LibertyEuroCarHandler>(container, HandlerName.LibertyEuroCarHandler);
-            //RegisterHandler<EzShuttleHandler>(container, HandlerName.EzShuttleHandler);
-            RegisterHandler<NampakFlightHandler>(container, HandlerName.NampakFlightHandler);
+            foreach (var handlerType in HandlerTypes())
+            {
+                container.RegisterType(
+                    typeof (IFileHandler),
+                    handlerType.Value,
+                    handlerType.Key,
+                    new InterceptionBehavior<PolicyInjectionBehavior>(),
+                    new Interceptor<InterfaceInterceptor>());
+            }
         }
 
         public IFileHandler CreateHandler(string handlerName)
@@ -54,6 +41,21 @@ namespace CarbonKnown.FileReaders
                        .IsRegistered(typeof (IFileHandler), handlerName)
                        ? container.Resolve<IFileHandler>(handlerName, new ParameterOverride("host", host))
                        : null;
+        }
+
+        public static IDictionary<string, Type> HandlerTypes()
+        {
+            return AssemblyExtentions
+                .AllAssemblyTypes<IFileHandler>()
+                .Where(t =>
+                    !t.IsInterface &&
+                    !t.IsAbstract &&
+                    (t.GetConstructors()
+                        .Any(info =>
+                            info.IsPublic &&
+                            info.GetParameters().Any() &&
+                            info.GetParameters()[0].ParameterType == typeof (string))))
+                .ToDictionary(t => t.Name.Replace("Handler", string.Empty), t => t);
         }
 
         private static void RegisterHandler<THandler>(IUnityContainer container, string handlerName)

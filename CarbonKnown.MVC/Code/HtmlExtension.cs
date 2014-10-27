@@ -1,12 +1,33 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 
 namespace CarbonKnown.MVC.Code
 {
     public static class HtmlExtension
     {
+
+        public static IHtmlString HandlerDescription(this HtmlHelper helper, string name)
+        {
+
+            var basePath = helper
+                .ViewContext
+                .HttpContext
+                .Server
+                .MapPath("~/Views/Input/handlers");
+
+            var filePath = Path.Combine(basePath, name) + ".html";
+            if (File.Exists(filePath))
+            {
+                return helper.Raw(File.ReadAllText(filePath));
+            }
+            File.WriteAllText(filePath, name);
+            return helper.Raw(name);
+        }
+
         public static string AbsoluteUrl(this HtmlHelper helper, string path)
         {
             var context = new HttpContextWrapper(HttpContext.Current);

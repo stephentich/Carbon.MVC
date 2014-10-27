@@ -112,6 +112,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyExtentions.cs" />
     <Compile Include="AvisCourier\AvisCourierHandler.cs" />
     <Compile Include="Constants\PolicyName.cs" />
     <Compile Include="Courier\CourierHandler.cs" />
@@ -173,9 +174,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\CarbonKnown.FileReaders.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="obj\Debug\CarbonKnown.FileReaders.csproj.FileListAbsolute.txt" />

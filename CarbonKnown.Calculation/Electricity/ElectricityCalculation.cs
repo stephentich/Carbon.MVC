@@ -53,7 +53,8 @@ namespace CarbonKnown.Calculation.Electricity
                 {ElectricityType.IsleOfManNationalGrid, FactorIds.Electricity.IsleofManNationalGrid},
                 {ElectricityType.UKNationalGrid, FactorIds.Electricity.UKNationalGrid},
                 {ElectricityType.MalawiNationalGrid, FactorIds.Electricity.MalawiNationalGrid},
-                {ElectricityType.SwazilandNationalGrid, FactorIds.Electricity.SwazilandNationalGrid}
+                {ElectricityType.SwazilandNationalGrid, FactorIds.Electricity.SwazilandNationalGrid},
+                {ElectricityType.PurchasedSteam, FactorIds.Electricity.SwazilandNationalGrid}
 
             };
 

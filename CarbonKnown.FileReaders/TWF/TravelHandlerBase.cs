@@ -5,7 +5,7 @@ using CarbonKnown.WCF.AirTravelRoute;
 
 namespace CarbonKnown.FileReaders.TWF
 {
-    public class TravelHandlerBase : FileHandlerBase<TravelDataContract>
+    public abstract class TravelHandlerBase : FileHandlerBase<TravelDataContract>
     {
         protected TravelHandlerBase(string host) : base(host)
         {

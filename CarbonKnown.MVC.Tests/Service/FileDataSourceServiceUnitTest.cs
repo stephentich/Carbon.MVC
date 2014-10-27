@@ -7,11 +7,13 @@ using CarbonKnown.DAL.Models;
 using CarbonKnown.DAL.Models.Source;
 using CarbonKnown.FileReaders;
 using CarbonKnown.FileReaders.FileHandler;
+using CarbonKnown.FileWatcherService;
 using CarbonKnown.MVC.Code;
 using CarbonKnown.MVC.DAL;
 using CarbonKnown.MVC.Service;
 using CarbonKnown.WCF.DataSource;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
+using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using DataSourceService = CarbonKnown.MVC.BLL.FileDataSourceService;
@@ -106,6 +108,17 @@ namespace CarbonKnown.MVC.Tests.Service
 
             //Assert
             Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void StartUpService()
+        {
+            var container = new UnityContainer();
+            HandlerFactory.RegisterHandlers(container);
+            var folderFactory = new FolderMonitorFactory(container);
+            var handlerFactory = new HandlerFactory(container);
+            var service = new CarbonKnown.FileWatcherService.FileWatcherService(folderFactory, handlerFactory);
+            service.Start();
         }
 
         [TestMethod]

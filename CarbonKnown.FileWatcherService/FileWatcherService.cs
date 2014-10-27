@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.ServiceProcess;
 using CarbonKnown.FileReaders;
 using CarbonKnown.FileReaders.Constants;
+using CarbonKnown.FileReaders.FileHandler;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 
 namespace CarbonKnown.FileWatcherService
@@ -25,16 +28,30 @@ namespace CarbonKnown.FileWatcherService
         {
             var section = FileWatcherConfigSection.Instance;
             if (section == null) return;
-            foreach (var setting in section.Handlers)
+            var fileHandlerTypes = HandlerFactory.HandlerTypes();
+            foreach (GroupInstance groupInstance in section.GroupInstances)
             {
-                var handler = handlerFactory
-                    .CreateHandler(setting.Value.HandlerName, setting.Value.Host);
+                var basefolder = groupInstance.BaseFolder;
+                if (!Directory.Exists(basefolder))
+                {
+                    Directory.CreateDirectory(basefolder);
+                }
+                foreach (var handlerType in fileHandlerTypes)
+                {
+                    var handlerPath = Path.Combine(basefolder, handlerType.Key);
+                    if (!Directory.Exists(handlerPath))
+                    {
+                        Directory.CreateDirectory(handlerPath);
+                    }
+                    var handler = handlerFactory
+                        .CreateHandler(handlerType.Key, groupInstance.Host);
 
-                var folderMonitor = folderMonitorFactory.CreateFolderMonitor(setting.Key, handler);
+                    var folderMonitor = folderMonitorFactory.CreateFolderMonitor(handlerPath, handler);
 
-                folderMonitor.StartMonitoring();
-                services.Enqueue(folderMonitor);
-            }            
+                    folderMonitor.StartMonitoring();
+                    services.Enqueue(folderMonitor);
+                }
+            }
         }
 
         protected override void OnStart(string[] args)

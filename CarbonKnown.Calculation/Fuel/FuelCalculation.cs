@@ -209,9 +209,6 @@ namespace CarbonKnown.Calculation.Fuel
                 {
                     FuelType.LPGGigajoule, new SortedDictionary<UnitOfMeasure, Guid>
                     {
-                        {UnitOfMeasure.KiloWattHours, FuelActivityId.LPGGigajoulesId},
-                        {UnitOfMeasure.Litres, FuelActivityId.LPGGigajoulesId},
-                        {UnitOfMeasure.Tonnes, FuelActivityId.LPGGigajoulesId},
                         {UnitOfMeasure.Gigajoules, FuelActivityId.LPGGigajoulesId}
                     }
                 },

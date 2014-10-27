@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarbonKnown.GenericFile", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarbonKnown.MVC", "CarbonKnown.MVC\CarbonKnown.MVC.csproj", "{42C5983A-07F2-4134-89C7-2DDFF6A36C38}"
 EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "CarbonKnown.FileWatcherService.Setup", "CarbonKnown.FileWatcherService.Setup\CarbonKnown.FileWatcherService.Setup.isproj", "{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarbonKnown.MVC.Tests", "CarbonKnown.MVC.Tests\CarbonKnown.MVC.Tests.csproj", "{4BB28AAD-A890-4021-9985-1F5C57204197}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -148,13 +152,33 @@ Global
 		{42C5983A-07F2-4134-89C7-2DDFF6A36C38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42C5983A-07F2-4134-89C7-2DDFF6A36C38}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{42C5983A-07F2-4134-89C7-2DDFF6A36C38}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.Debug|Any CPU.ActiveCfg = DVD-5
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.Debug|Any CPU.Build.0 = DVD-5
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.DVD-5|Any CPU.Build.0 = DVD-5
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.Release|Any CPU.ActiveCfg = SingleImage
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.Release|Any CPU.Build.0 = SingleImage
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{B2F52AFF-5FA9-49AA-B6DA-7B17E3B68146}.SingleImage|Any CPU.Build.0 = SingleImage
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB28AAD-A890-4021-9985-1F5C57204197}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\EnterpriseLibrary.ExceptionHandling.Logging.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.ExceptionHandling.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35;packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Data.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Database.5.0.505.0\lib\NET35
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.PolicyInjection.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\EnterpriseLibrary.ExceptionHandling.Logging.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.ExceptionHandling.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35;packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Data.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Database.5.0.505.0\lib\NET35
 	EndGlobalSection
 	GlobalSection(JSLint) = preSolution
 		SolutionConfigurationLocation = JSLintOptions.xml
